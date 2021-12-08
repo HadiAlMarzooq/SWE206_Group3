@@ -23,21 +23,24 @@ public class HelloApplication extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setHeaderText("Any unsaved changes will be lost!");
-                alert.setContentText("Do you want to save?");
-                if(alert.showAndWait().get() == ButtonType.OK){
-                    try {
-                        FileReader.writeData();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InvalidFormatException e) {
-                        e.printStackTrace();
+                if(MainController.didChange){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Any unsaved changes will be lost!");
+                    alert.setContentText("Do you want to save?");
+                    if(alert.showAndWait().get() == ButtonType.OK){
+                        try {
+                            FileReader.writeData();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InvalidFormatException e) {
+                            e.printStackTrace();
+                        }
+
+                    }else{
+
                     }
-
-                }else{
-
                 }
+
             }
         });
         stage.show();

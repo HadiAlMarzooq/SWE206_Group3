@@ -44,6 +44,8 @@ KFUPM News Team
     @FXML
     Button addComp;
 
+    public static boolean didChange = false;
+
     @FXML
     ListView<Competition> compList;
 
@@ -83,6 +85,7 @@ KFUPM News Team
     Label mamberLabel;
     @FXML
     protected void editPar() throws IOException {
+        didChange = true;
 
         if(compList.getFocusModel().getFocusedItem().single){
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("edit-par-single.fxml"));
@@ -111,11 +114,12 @@ KFUPM News Team
 
     @FXML
     protected void save() throws IOException, InvalidFormatException {
+        didChange = false;
         FileReader.writeData();
     }
     @FXML
     protected void addPar() throws IOException, InvalidFormatException {
-        FileReader.writeData();
+        didChange = true;
         if(compList.getFocusModel().getFocusedItem().single){
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-par-single.fxml"));
             AddParSingleController controller = new AddParSingleController(compList.getFocusModel().getFocusedItem());
@@ -152,6 +156,7 @@ KFUPM News Team
 
     @FXML
     protected void editMemeber() throws IOException {
+        didChange = true;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("edit-member.fxml"));
         EditMemberController controller = new EditMemberController(partList.getFocusModel().getFocusedItem(), memberList.getFocusModel().getFocusedItem());
         fxmlLoader.setController(controller);
@@ -165,7 +170,7 @@ KFUPM News Team
 
     @FXML
     protected void addComp() throws IOException {
-
+        didChange = true;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-comp.fxml"));
 
         Stage stage = new Stage();
@@ -179,7 +184,7 @@ KFUPM News Team
     @FXML
     protected void editComp() throws IOException {
 
-
+        didChange = true;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("edit-comp.fxml"));
         EditCompController controller = new EditCompController(compList.getFocusModel().getFocusedItem());
         fxmlLoader.setController(controller);
@@ -233,6 +238,7 @@ KFUPM News Team
 
     @FXML
     protected void deleteComp(){
+        didChange = true;
         FileReader.competitions.remove(compList.getFocusModel().getFocusedItem());
         compList.getItems().setAll(FileReader.competitions);
     }
@@ -242,7 +248,7 @@ KFUPM News Team
 
     @FXML
     protected void deletePar() throws URISyntaxException, IOException {
-
+        didChange = true;
         compList.getFocusModel().getFocusedItem().partecipants.remove(partList.getFocusModel().getFocusedItem());
         partList.getItems().setAll(compList.getFocusModel().getFocusedItem().partecipants);
         memberList.setOpacity(0);
@@ -317,7 +323,7 @@ KFUPM News Team
 
     @FXML
     protected void deleteMember(){
-
+        didChange = true;
       (  (TeamPartecipant) partList.getFocusModel().getFocusedItem()).teamMumbers.remove(memberList.getFocusModel().getFocusedItem());
         memberList.getItems().setAll(((TeamPartecipant) partList.getFocusModel().getFocusedItem()).teamMumbers);
 
@@ -326,6 +332,7 @@ KFUPM News Team
 
     @FXML
     protected void addMember() throws IOException {
+        didChange = true;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-member.fxml"));
 
         AddMember controller = new AddMember((TeamPartecipant) partList.getFocusModel().getFocusedItem());

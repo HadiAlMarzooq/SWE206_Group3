@@ -42,6 +42,7 @@ public class FileReader {
         int sheetNumber = 0;
         while(ii.hasNext()){
             XSSFSheet sheet = (XSSFSheet) ii.next();
+            System.out.println(sheet.getRow(4).getPhysicalNumberOfCells());
             boolean team = sheet.getRow(4).getPhysicalNumberOfCells() == 7; //this line will check if it's team or not.
             if (team){
                 System.out.println("They are a team\n\n\n");
@@ -151,8 +152,11 @@ public class FileReader {
 
 
             int i = 4;
+            System.out.println(comp.single);
             if(comp.single){
                 firstRow = sheet.createRow(i);
+                cell = firstRow.createCell(0);
+                cell.setCellStyle(style);
                 cell = firstRow.createCell(1);
                 cell.setCellStyle(style);
                 cell.setCellValue("Student ID");
@@ -201,6 +205,8 @@ public class FileReader {
 
             }else{
                 firstRow = sheet.createRow(i);
+                cell = firstRow.createCell(0);
+                cell.setCellStyle(style);
                 cell = firstRow.createCell(1);
                 cell.setCellStyle(style);
 
