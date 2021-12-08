@@ -87,18 +87,20 @@ KFUPM News Team
             EditParSingleController controller = new EditParSingleController(partList.getFocusModel().getFocusedItem());
             fxmlLoader.setController(controller);
             Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 590, 500);
             stage.setTitle("CompTracker");
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }else{
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("edit-par-team.fxml"));
             EditTeamController controller = new EditTeamController(partList.getFocusModel().getFocusedItem());
             fxmlLoader.setController(controller);
             Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 590, 500);
             stage.setTitle("CompTracker");
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }
 
@@ -111,19 +113,21 @@ KFUPM News Team
             AddParSingleController controller = new AddParSingleController(compList.getFocusModel().getFocusedItem());
             fxmlLoader.setController(controller);
             Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 590, 500);
             stage.setTitle("CompTracker");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
         }else{
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-par-team.fxml"));
             AddTeamController controller = new AddTeamController(compList.getFocusModel().getFocusedItem());
             fxmlLoader.setController(controller);
             Stage stage = new Stage();
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+            Scene scene = new Scene(fxmlLoader.load(), 590, 500);
             stage.setTitle("CompTracker");
             stage.setScene(scene);
             stage.show();
+            stage.setResizable(false);
         }
 
     }
@@ -144,10 +148,11 @@ KFUPM News Team
         EditMemberController controller = new EditMemberController(partList.getFocusModel().getFocusedItem(), memberList.getFocusModel().getFocusedItem());
         fxmlLoader.setController(controller);
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 590, 500);
         stage.setTitle("CompTracker");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
     @FXML
@@ -156,10 +161,11 @@ KFUPM News Team
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-comp.fxml"));
 
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 590, 500);
         stage.setTitle("CompTracker");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
 
     }
     @FXML
@@ -170,10 +176,11 @@ KFUPM News Team
         EditCompController controller = new EditCompController(compList.getFocusModel().getFocusedItem());
         fxmlLoader.setController(controller);
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 590, 500);
         stage.setTitle("CompTracker");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -316,10 +323,11 @@ KFUPM News Team
         AddMember controller = new AddMember((TeamPartecipant) partList.getFocusModel().getFocusedItem());
         fxmlLoader.setController(controller);
         Stage stage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 590, 500);
         stage.setTitle("CompTracker");
         stage.setScene(scene);
         stage.show();
+        stage.setResizable(false);
     }
 
 
