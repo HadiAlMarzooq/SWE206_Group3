@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -106,8 +108,14 @@ KFUPM News Team
 
     }
 
+
     @FXML
-    protected void addPar() throws IOException {
+    protected void save() throws IOException, InvalidFormatException {
+        FileReader.writeData();
+    }
+    @FXML
+    protected void addPar() throws IOException, InvalidFormatException {
+        FileReader.writeData();
         if(compList.getFocusModel().getFocusedItem().single){
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("add-par-single.fxml"));
             AddParSingleController controller = new AddParSingleController(compList.getFocusModel().getFocusedItem());

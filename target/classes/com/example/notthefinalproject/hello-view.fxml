@@ -101,5 +101,6 @@
             <Font name="Baskerville" size="19.0" />
          </font>
       </Label>
+      <Button layoutX="419.0" layoutY="573.0" mnemonicParsing="false" onAction="#save" text="Save Changes" />
    </children>
 </AnchorPane>
