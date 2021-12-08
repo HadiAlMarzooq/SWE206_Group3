@@ -190,7 +190,30 @@ KFUPM News Team
     Button deleteComp;
 
 
-
+    @FXML
+    Label compName;
+    @FXML
+    Label nameLabel;
+    @FXML
+    Label compDate;
+    @FXML
+    Label dateLabel;
+    @FXML
+    Label parName;
+    @FXML
+    Label parMajor;
+    @FXML
+    Label parId;
+    @FXML
+    Label parRank;
+    @FXML
+    Label nameLabel2;
+    @FXML
+    Label idLabel;
+    @FXML
+    Label majorLabel;
+    @FXML
+    Label rankLabel;
 
 
     @FXML
@@ -220,6 +243,9 @@ KFUPM News Team
 
     @FXML
     Button sendEmailPar;
+
+    @FXML
+    Label mamberName;
 
     @FXML
     protected  void sendEmailPar() throws IOException, URISyntaxException {
@@ -304,6 +330,11 @@ KFUPM News Team
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+    mamberName.setOpacity(0);
+
+        parName.setOpacity(0);
         engine = webView.getEngine();
         memberAdd.setOpacity(0);
         memberList.setOpacity(0);
@@ -312,19 +343,52 @@ KFUPM News Team
         deletePar.setOpacity(0);
         sendEmailPar.setOpacity(0);
 
+        compName.setOpacity(0);
+
         addPar.setOpacity(0);
         editPar.setOpacity(0);
         welcomeText.setOpacity(0);
         parLabel.setOpacity(0);
         deleteMember.setOpacity(0);
         partList.setOpacity(0);
+
         partList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Partecipant>() {
             @Override
             public void changed(ObservableValue<? extends Partecipant> observable, Partecipant oldValue, Partecipant newValue) {
 
                 if (newValue != null) {
+                    mamberName.setOpacity(0);
+                    if(compList.getFocusModel().getFocusedItem().single){
 
+
+                        SinglePartecipant p = (SinglePartecipant) partList.getFocusModel().getFocusedItem();
+
+
+                        String stId = p.partecipant.id.toString();
+                        stId = stId.substring(0, stId.length()-3);
+                        while (stId.length()<9){
+                            stId+="0";
+                        }
+                        stId =stId.replace(".", "");
+
+                        String text = p.partecipant.name + "\n\n"+ stId+ "\n\n"+ p.partecipant.major+"\n\n"+"#"+p.rank;
+                        parName.setText(text);
+
+                        parName.setOpacity(1);
+
+                    }else {
+                        TeamPartecipant p = (TeamPartecipant) partList.getFocusModel().getFocusedItem();
+
+
+
+
+                        String text = p.teamName + "\n\n#"+ p.rank;
+                        parName.setText(text);
+
+                        parName.setOpacity(1);
+                    }
                     if(!(compList.getFocusModel().getFocusedItem().single)){
+
                         System.out.println(compList.getFocusModel().getFocusedItem().compName);
                         memberList.getItems().setAll(((TeamPartecipant) newValue).teamMumbers);
                         memberList.setOpacity(1);
@@ -332,6 +396,8 @@ KFUPM News Team
                         memberAdd.setOpacity(1);
                         deleteMember.setOpacity(1);
                         mamberLabel.setOpacity(1);
+
+
                     }
                 }
 
@@ -344,12 +410,19 @@ KFUPM News Team
             public void changed(ObservableValue<? extends Competition> observable, Competition oldValue, Competition newValue) {
 
                 if(newValue != null){
+                    mamberName.setOpacity(0);
+                    parName.setOpacity(0);
+                    String compInfo = compList.getFocusModel().getFocusedItem().compName + "\n\n"+compList.getFocusModel().getFocusedItem().compDate.toString();
+                    compName.setText(compInfo);
+
                     load(newValue.compUrl);
                     selectedComp = newValue;
                     for(Partecipant p : newValue.partecipants){
 
                         System.out.println(p);
                     }
+
+                    compName.setOpacity(1);
                     deletePar.setOpacity(1);
                     memberList.setOpacity(0);
                     sendEmailPar.setOpacity(1);
@@ -369,12 +442,35 @@ KFUPM News Team
 
             }
         });
+        memberList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                Student p =  memberList.getFocusModel().getFocusedItem();
+
+
+                String stId = p.id.toString();
+                stId = stId.substring(0, stId.length()-3);
+                while (stId.length()<9){
+                    stId+="0";
+                }
+                stId =stId.replace(".", "");
+
+                String text = p.name + "\n\n"+ stId+ "\n\n"+ p.major;
+                mamberName.setText(text);
+
+                mamberName.setOpacity(1);
+            }
+        });
     }
     public void load(String url){
 
         System.out.println("loading "+url);
 
         engine.load(url);
+    }
+
+    @FXML
+    public void back(){
+        engine.getHistory().go(-1);
     }
 
 

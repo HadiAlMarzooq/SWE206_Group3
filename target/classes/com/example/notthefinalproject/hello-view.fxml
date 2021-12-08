@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.notthefinalproject.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1316.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.notthefinalproject.MainController">
    <children>
       <Label layoutX="24.0" layoutY="31.0" text="Welcome again!">
          <font>
@@ -84,6 +84,22 @@
          </font>
       </Button>
       <Button fx:id="sendEmailPar" layoutX="319.0" layoutY="320.0" mnemonicParsing="false" onAction="#sendEmailPar" text="Send Email" />
-      <WebView fx:id="webView" layoutX="749.0" layoutY="1.0" prefHeight="612.0" prefWidth="428.0" />
+      <WebView fx:id="webView" layoutX="749.0" layoutY="1.0" prefHeight="612.0" prefWidth="566.0" />
+      <Button layoutX="749.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="57.0" text="&lt;-" />
+      <Label fx:id="parName" layoutX="258.0" layoutY="377.0" text="CompName">
+         <font>
+            <Font name="Baskerville" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="compName" layoutX="24.0" layoutY="377.0" text="CompName">
+         <font>
+            <Font name="Baskerville" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="mamberName" layoutX="523.0" layoutY="377.0" text="CompName">
+         <font>
+            <Font name="Baskerville" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
