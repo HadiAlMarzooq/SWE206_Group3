@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 public class EditTeamController implements Initializable {
 
 
-
+    boolean validRank = true;
 
     @FXML
     Label parName;
@@ -37,9 +37,15 @@ public class EditTeamController implements Initializable {
 
     @FXML
     protected void done(){
+        validRank = true;
+        for(char c : rankField.getText().strip().toCharArray()){
 
+            if(!Character.isDigit(c) && !(c == '-')){
+                validRank = false;
+            }
+        }
 
-        if(nameField.getText() != "" ){
+        if(nameField.getText() != "" && rankField.getText() != "" && validRank){
 
 
            ( (TeamPartecipant) partecipant).teamName = nameField.getText();
@@ -60,7 +66,7 @@ public class EditTeamController implements Initializable {
 
 
         }else {
-            message.setText("Error");
+            message.setText("Ivalid fields");
             message.setTextFill(Color.RED);
             message.setOpacity(1);
         }

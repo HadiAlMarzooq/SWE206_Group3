@@ -15,9 +15,8 @@ import java.util.ResourceBundle;
 
 public class EditParSingleController implements Initializable {
 
-
-
-
+    boolean validId = true;
+    boolean validRank = true;
     @FXML
     Label parName;
     @FXML
@@ -41,9 +40,26 @@ public class EditParSingleController implements Initializable {
 
     @FXML
     protected void done(){
+        validId = true;
+        validRank = true;
+        for(char c : rankField.getText().strip().toCharArray()){
+
+            if(!Character.isDigit(c) && !(c == '-')){
+                validRank = false;
+            }
+        }
+
+        for(char c : idField.getText().strip().toCharArray()){
+            if(!Character.isDigit(c)){
+                validId =false;
+            }
+        }
+        if(idField.getText().strip().length() != 9){
+            validId =false;
+        }
+        if(nameField.getText() != "" &&  idField.getText() != "" && validId && validRank && rankField.getText() != "" && majorField.getText() != ""){
 
 
-        if(nameField.getText() != "" &&  idField.getText() != ""){
 
 
             ((SinglePartecipant) partecipant).partecipant.name = nameField.getText();
@@ -85,7 +101,13 @@ public class EditParSingleController implements Initializable {
     message.setOpacity(0);
     majorField.setText(p.major);
     nameField.setText(p.name);
-    String id =((( p.id+"").substring(0,9)).replace(".", ""))+"0";
+    String id = p.id.toString();
+    id = id.substring(0, id.length()-3);
+        id =id.replace(".", "");
+    while (id.length()<9){
+            id+="0";
+    }
+
     rankField.setText(partecipant.rank);
     idField.setText(id);
 

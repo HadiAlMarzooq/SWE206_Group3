@@ -17,7 +17,7 @@ package com.example.notthefinalproject;
 public class EditMemberController implements Initializable {
 
 
-
+    boolean validId, validRank;
 
     @FXML
     Label parName;
@@ -43,8 +43,24 @@ public class EditMemberController implements Initializable {
     @FXML
     protected void done(){
 
+        validId = true;
+        validRank = true;
+        for(char c : rankField.getText().strip().toCharArray()){
 
-        if(nameField.getText() != "" &&  idField.getText() != ""){
+            if(!Character.isDigit(c) && !(c == '-')){
+                validRank = false;
+            }
+        }
+
+        for(char c : idField.getText().strip().toCharArray()){
+            if(!Character.isDigit(c)){
+                validId =false;
+            }
+        }
+        if(idField.getText().strip().length() != 9){
+            validId =false;
+        }
+        if(nameField.getText() != "" &&  idField.getText() != "" && validId && validRank && rankField.getText() != "" && majorField.getText() !=""){
 
             st.name = nameField.getText();
             st.id = Double.parseDouble(idField.getText());
@@ -86,7 +102,13 @@ public class EditMemberController implements Initializable {
         majorField.setText(st.major);
         nameField.setText(st.name);
         rankField.setText(partecipant.rank);
-        idField.setText(st.id+"");
+        String id = st.id.toString();
+        id = id.substring(0, id.length()-3);
+        id =id.replace(".", "");
+        while (id.length()<9){
+            id+="0";
+        }
+        idField.setText(id);
 
 
 

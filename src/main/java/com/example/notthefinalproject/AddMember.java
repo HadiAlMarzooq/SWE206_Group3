@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 public class AddMember implements Initializable {
 
 
-
+    boolean validId;
 
     @FXML
     Label parName;
@@ -37,9 +37,19 @@ public class AddMember implements Initializable {
 
     @FXML
     protected void done(){
+        validId = true;
 
 
-        if(nameField.getText() != "" &&  idField.getText() != ""){
+        for(char c : idField.getText().strip().toCharArray()){
+            if(!Character.isDigit(c)){
+                validId =false;
+            }
+        }
+        if(idField.getText().strip().length() != 9){
+            validId =false;
+        }
+
+        if(nameField.getText() != "" &&  idField.getText() != "" && validId){
 
             team.addMumber(new Student(
                     nameField.getText(),

@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public class AddTeamController implements Initializable {
 
-
+    boolean validRank = true;
 
 
     @FXML
@@ -40,8 +40,14 @@ public class AddTeamController implements Initializable {
     @FXML
     protected void done(){
 
+        validRank = true;
+        for(char c : rankField.getText().strip().toCharArray()){
 
-        if(nameField.getText() != "" ){
+            if(!Character.isDigit(c) && !(c == '-')){
+                validRank = false;
+            }
+        }
+        if(nameField.getText() != "" && validRank){
 
             comp.addPartecipant(new TeamPartecipant(nameField.getText(), rankField.getText()));
 

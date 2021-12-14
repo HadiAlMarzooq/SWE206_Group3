@@ -17,7 +17,8 @@ public class AddParSingleController implements Initializable {
 
 
 
-
+    boolean validId = true;
+    boolean validRank = true;
     @FXML
     Label parName;
     @FXML
@@ -42,8 +43,24 @@ public class AddParSingleController implements Initializable {
     @FXML
     protected void done(){
 
+        validId = true;
+        validRank = true;
+        for(char c : rankField.getText().strip().toCharArray()){
 
-        if(nameField.getText() != "" &&  idField.getText() != ""){
+            if(!Character.isDigit(c) && !(c == '-')){
+                validRank = false;
+            }
+        }
+
+        for(char c : idField.getText().strip().toCharArray()){
+            if(!Character.isDigit(c)){
+                validId =false;
+            }
+        }
+        if(idField.getText().strip().length() != 9){
+            validId =false;
+        }
+        if(nameField.getText() != "" &&  idField.getText() != "" && validId && validRank && rankField.getText() != "" && majorField.getText()!= ""){
 
         comp.addPartecipant(new SinglePartecipant(new Student(
                 nameField.getText(),
