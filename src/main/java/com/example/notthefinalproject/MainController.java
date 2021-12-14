@@ -175,10 +175,19 @@ KFUPM News Team
 
         Stage stage = new Stage();
         Scene scene = new Scene(fxmlLoader.load(), 590, 500);
+
         stage.setTitle("CompTracker");
+
         stage.setScene(scene);
         stage.show();
         stage.setResizable(false);
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                refreshList();
+            }
+        });
+
 
     }
     @FXML
