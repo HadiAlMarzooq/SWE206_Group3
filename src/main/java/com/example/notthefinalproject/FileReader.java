@@ -80,7 +80,8 @@ public class FileReader {
                 Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column
                 if(!team){
                     cellIterator.next();
-                    double pId = cellIterator.next().getNumericCellValue();
+                    Cell id =  cellIterator.next();
+                    double pId = id.getCellType() == CellType.NUMERIC ? id.getNumericCellValue() : Double.parseDouble(id.getStringCellValue());
                     String pName = cellIterator.next().getStringCellValue();
                     String pMajor = cellIterator.next().getStringCellValue();
                     Cell rankc =  cellIterator.next();

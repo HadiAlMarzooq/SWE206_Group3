@@ -290,7 +290,7 @@ KFUPM News Team
                 body = body.replaceAll(" ", "%20");
                 String stId = ((SinglePartecipant)partList.getFocusModel().getFocusedItem()).partecipant.id.toString();
                 stId = stId.substring(0, stId.length()-3);
-                while (stId.length()<9){
+                while (stId.length()<10){
                     stId+="0";
                 }
                 stId =stId.replace(".", "");
@@ -306,13 +306,15 @@ KFUPM News Team
                 body = body.replaceAll("\n", "%0A");
                 body = body.replaceAll(" ", "%20");
                 String email = "";
+
                 for(Student st :(((TeamPartecipant)partList.getFocusModel().getFocusedItem()).teamMumbers)){
                     String stId = st.id.toString();
+                    stId =stId.replace(".", "");
                     stId = stId.substring(0, stId.length()-3);
                     while (stId.length()<9){
                         stId+="0";
                     }
-                    stId =stId.replace(".", "");
+
 
 
                     email += stId+ "@kfupm.edu.sa,";
@@ -398,7 +400,7 @@ KFUPM News Team
 
                         String stId = p.partecipant.id.toString();
                         stId = stId.substring(0, stId.length()-3);
-                        while (stId.length()<9){
+                        while (stId.length()<10){
                             stId+="0";
                         }
                         stId =stId.replace(".", "");
@@ -481,7 +483,7 @@ KFUPM News Team
 
                 String stId = p.id.toString();
                 stId = stId.substring(0, stId.length()-3);
-                while (stId.length()<9){
+                while (stId.length()<10){
                     stId+="0";
                 }
                 stId =stId.replace(".", "");
